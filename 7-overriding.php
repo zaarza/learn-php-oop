@@ -7,17 +7,15 @@ class Product {
         $judul = "Judul Produk / Game", 
         $penulis = "Penulis", 
         $penerbit = "Penerbit", 
-        $harga = 0, 
-        $durasi = 0 ) {
+        $harga = 0) {
 
         $this->judul = $judul;
-        $this->durasi = $durasi;
         $this->penulis = $penulis;
         $this->penerbit = $penerbit;
         $this->harga = $harga;
     }
     
-    public $judul, $penulis, $penerbit, $harga, $durasi;
+    public $judul, $penulis, $penerbit, $harga;
 
     public function getLabel() {
         return "$this->judul, $this->penerbit";
@@ -36,14 +34,34 @@ class Printer {
 }
 
 class Buku extends Product {
+    public $durasi;
+    public function __construct($judul = "Judul Produk / Game", 
+    $penulis = "Penulis", 
+    $penerbit = "Penerbit", 
+    $harga = 0,
+    $durasi = 0) {
+        parent::__construct($judul, $penulis, $penerbit, $harga);
+        $this->durasi = $durasi;
+    }
+
     public function getDetailProduct() {
-        return "Buku: $this->judul | $this->penulis, $this->penerbit (Rp. $this->harga) - $this->durasi Halaman";
+        return "Buku: " . parent::getDetailProduct() . " - $this->durasi Halaman";
     }
 }
 
 class Video extends Product {
+    public $durasi;
+    public function __construct($judul = "Judul Produk / Game", 
+    $penulis = "Penulis", 
+    $penerbit = "Penerbit", 
+    $harga = 0,
+    $durasi = 0) {
+        parent::__construct($judul, $penulis, $penerbit, $harga);
+        $this->durasi = $durasi;
+    }
+
     public function getDetailProduct() {
-        return "Video: $this->judul | $this->penulis, $this->penerbit (Rp. $this->harga) ~ $this->durasi Jam";
+        return "Video: " . parent::getDetailProduct() . " ~ $this->durasi Jam";
     }
 }
 
